@@ -10,6 +10,7 @@ areynold/master differs from oti/master in the following ways:
 + merge admin-profile to master
 + create ignore branch
 + merge ignore branch to master
++ Begin refactoring & cleanup: create refactor branch
 
 Admin-Profile Summary
 _____________________
@@ -56,3 +57,12 @@ To test the AP exception:
 1. Run py.test while not connected to a Commotion node. Execution should fail,
 and your traceback should include instructions to connect to a Commotion AP
 before running the tests.
+
+
+Refactoring and Cleanup Summary
+_______________________________
+
+Is only pseudo-OO. Add creators and destructors where necessary.
+Mixes unittest and pytest where it's not necessary.
+Uses duplicative methods and functions.
+Directory structure could be cleaned up.
