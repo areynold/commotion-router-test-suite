@@ -2,15 +2,8 @@ Fork Changelog
 ==============
 
 areynold/master differs from oti/master in the following ways:
-+ merge pytest-config branch to master (https://github.com/opentechinstitute/commotion-router-test-suite/pull/7)
-+ merge python3 branch to master (https://github.com/opentechinstitute/commotion-router-test-suite/pull/9)
-+ create admin-profile branch
-+ create ap-exception branch
-+ merge ap-exception to admin-profile
-+ merge admin-profile to master
-+ create ignore branch
-+ merge ignore branch to master
 + Begin refactoring & cleanup: create refactor branch
+
 
 Admin-Profile Summary
 _____________________
@@ -66,3 +59,4 @@ Is only pseudo-OO. Add creators and destructors where necessary.
 Mixes unittest and pytest where it's not necessary.
 Uses duplicative methods and functions.
 Directory structure could be cleaned up.
+Document components and use.
