@@ -2,8 +2,9 @@
 Config instructions and test fixtures
 """
 
-import pytest
 import os
+
+import pytest
 
 
 @pytest.fixture(scope="session", autouse=True)
@@ -18,12 +19,13 @@ def setup_ini(request):
         print(args)
         try:
             import shutil
+
             print("Creating pytest.ini")
             shutil.copyfile(path + "/example-pytest.ini", path + "/pytest.ini")
         except OSError as args:
             print("Error creating pytest.ini. ", args)
 
-    # # Necessary?
-    # def finalize_setup_ini():
-    #     return None
-    #     request.addfinalizer(finalize_setup_ini)
+            # # Necessary?
+            # def finalize_setup_ini():
+            # return None
+            #     request.addfinalizer(finalize_setup_ini)
