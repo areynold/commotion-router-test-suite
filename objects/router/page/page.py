@@ -24,7 +24,7 @@ from selenium.common.exceptions import NoSuchElementException
 #
 # Structure:
 # { name_of_page_class : {
-#       human_readable_element_title : selenium_compatible_element_identifier
+# human_readable_element_title : selenium_compatible_element_identifier
 #           # inline comment containing identifier type
 #       }
 # }
@@ -36,19 +36,19 @@ from selenium.common.exceptions import NoSuchElementException
 # to run test functions.
 LOCATORS = {
     "common": {
-        "commotion_logo": "device", # ID
-        "version": "credits", # Class - requires add'l filtering
+        "commotion_logo": "device",  # ID
+        "version": "credits",  # Class - requires add'l filtering
     },
     "login": {
-        "username_field": "username", # Name
-        "password_field": "focus_password", # ID
-        "error": "error", # Class
-        "submit": "cbi-button-apply", # Class
-        "reset": "cbi-button-reset", # Class
+        "username_field": "username",  # Name
+        "password_field": "focus_password",  # ID
+        "error": "error",  # Class
+        "submit": "cbi-button-apply",  # Class
+        "reset": "cbi-button-reset",  # Class
     },
     "home": {
-        "apps-header": "appsH2", # Class
-        "user-add-app": "add_app", # ID
+        "apps-header": "appsH2",  # Class
+        "user-add-app": "add_app",  # ID
     },
     "admin": {
         "url-stok": False,
@@ -66,7 +66,6 @@ class CRCommonPage(object):
         __sb = None
         commotion_node_ip = None
 
-
     # This is dumb and duplicative. We only need node_ip.
     # Try this http://pydanny.com/attaching-custom-exceptions-to-functions-and-classes.html
     _, commotion_client_ip = router.get_commotion_client_ip()
@@ -75,10 +74,9 @@ class CRCommonPage(object):
     except TypeError:
         raise exceptions.CommotionIPError(
             'No valid Commotion IP address found'
-            )
+        )
     except exceptions.CommotionIPError as args:
         print(args)
-
 
     def _verify_correct_page(self, __sb, page_url):
         """Sanity check defined page url against url in browser"""
@@ -94,8 +92,7 @@ class CRCommonPage(object):
         except AssertionError:
             print("Rendered url %s does not match expected url %s" % (
                 __sb.current_url, page_url
-                ))
-
+            ))
 
     def wait_for_page_load(self, __sb):
         """Tell selenium to wait for locator before proceeding"""
@@ -124,32 +121,32 @@ class CRCommonPage(object):
                 expected.presence_of_element_located((
                     (
                         getattr(By, etype)), element
-                    )))
+                )))
         except NoSuchElementException:
             print("Page element %s of type %s not found!" % (
                 element, etype
-                ))
+            ))
         else:
             print("Page element %s found." % element)
             return True
 
 
-    # thisnode url
-    # Header
-    # Footer
-    # Body
+            # thisnode url
+            # Header
+            # Footer
+            # Body
 
 
 class CRHomePage(CRCommonPage):
     """Objects found on Commotion Router's default landing page"""
+
     def __init__(self, browser):
         super(CRHomePage, self).__init__()
         __sb = browser
         self.page_url = (
             'https://' + CRCommonPage.commotion_node_ip + '/cgi-bin/luci'
-            )
+        )
         self._verify_correct_page(__sb, self.page_url)
-
 
     def show_current_rev(self, __sb, test_rev):
         """Check page footer for commotion version number.
@@ -158,10 +155,10 @@ class CRHomePage(CRCommonPage):
         print("Checking footer for correct Commotion Revision")
         CRCommonPage.wait_for_element_of_type(
             self, __sb, "CLASS_NAME", LOCATORS["common"]["version"]
-            )
+        )
         print("Comparing versions")
         page_rev = __sb.find_element_by_class_name(LOCATORS["common"]
-                                                   ["version"])
+        ["version"])
         # Could also use page_rev.text.endswith(test_rev)
         if test_rev not in page_rev.text:
             print("Footer version %s does not match test version %s", (
@@ -169,7 +166,6 @@ class CRHomePage(CRCommonPage):
             return False
         else:
             return True
-
 
     def users_can_add_apps(self, __sb):
         """When enabled, unprivileged users can add apps from the homepage"""
@@ -193,7 +189,7 @@ class CRLoginPage(CRCommonPage):
         __sb = browser
         self.page_url = (
             'https://' + CRCommonPage.commotion_node_ip + '/cgi-bin/luci/admin'
-            )
+        )
         self._verify_correct_page(__sb, self.page_url)
 
     def password_required(self, __sb):
@@ -206,7 +202,7 @@ class CRLoginPage(CRCommonPage):
         except NoSuchElementException:
             print("Login page element %s not found" % (
                 LOCATORS["login"]["password_field"]
-                ))
+            ))
             return False
         else:
             print("Login page requires a password")
@@ -217,7 +213,7 @@ class CRLoginPage(CRCommonPage):
         print("Testing user-supplied password")
         __sb.find_element_by_id(
             LOCATORS["login"]["password_field"]
-            ).send_keys(password)
+        ).send_keys(password)
 
         if "\n" not in password:
             # Click submit if password doesn't have a newline
@@ -225,14 +221,14 @@ class CRLoginPage(CRCommonPage):
 
         CRCommonPage.wait_for_element_of_type(
             self, __sb, "CLASS_NAME", LOCATORS["login"]["error"]
-            )
+        )
         # Rewrite as try/except NoSuchElementException/else
         if __sb.find_element_by_class_name(LOCATORS["login"]["error"]).is_displayed():
             print("Login page displays error message on incorrect password")
             return True
         else:
-            print("Login page does not display error message " \
-                "on incorrect password")
+            print("Login page does not display error message "
+                  "on incorrect password")
             return False
 
     def correct_pass_allows_access(self, __sb, password):
@@ -242,7 +238,7 @@ class CRLoginPage(CRCommonPage):
         print("Testing user-supplied password")
         __sb.find_element_by_id(
             LOCATORS["login"]["password_field"]
-            ).send_keys(password)
+        ).send_keys(password)
 
         if "\n" not in password:
             # Click submit if password doesn't have a newline
@@ -267,5 +263,5 @@ class CRAdminPage(CRCommonPage):
     ## Logout
     # URL stok (Note: This also allows csrf vuln)
     #page_url = 'https://' + self.netinfo.commotion_node_ip \
-            #+ '/cgi-bin/luci/admin'
+    #+ '/cgi-bin/luci/admin'
     pass
