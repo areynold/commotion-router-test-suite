@@ -14,7 +14,7 @@ class TestFirefoxUnprivileged(browser.BrowserTestContext):
         home = page.CRHomePage(self.browser)
         test_rev = "Commotion Router Release 1.1rc2"
         # This should return the footer string instead, then assertEqual
-        self.assertTrue(home.show_current_rev(test_rev),
+        self.assertTrue(home.show_current_rev(self.browser, test_rev),
                         'Incorrect revision in footer')
 
     def test_default_no_user_apps(self):
@@ -24,5 +24,5 @@ class TestFirefoxUnprivileged(browser.BrowserTestContext):
         Calls homepage object.
         """
         home = page.CRHomePage(self.browser)
-        self.assertFalse(home.users_can_add_apps(),
+        self.assertFalse(home.users_can_add_apps(self.browser),
                          'Default app permissions incorrect')
