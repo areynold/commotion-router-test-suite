@@ -96,7 +96,8 @@ class CRCommonPage(object):
                 __sb.current_url, page_url
             ))
 
-    def wait_for_page_load(self, __sb):
+    @staticmethod
+    def wait_for_page_load(__sb):
         """Tell selenium to wait for locator before proceeding"""
         print("Waiting for presence of known-good page element")
         try:
@@ -109,6 +110,7 @@ class CRCommonPage(object):
         else:
             print("%s loaded successfully" % __sb.current_url)
 
+    @staticmethod
     def wait_for_element_of_type(self, __sb, etype, element):
         """
         Tell selenium to wait for a specific locator of specific type
@@ -169,6 +171,7 @@ class CRHomePage(CRCommonPage):
         else:
             return True
 
+    @staticmethod
     def users_can_add_apps(self, __sb):
         """When enabled, unprivileged users can add apps from the homepage"""
         print("Checking for app add button...")
@@ -194,6 +197,7 @@ class CRLoginPage(CRCommonPage):
         )
         self._verify_correct_page(__sb, self.page_url)
 
+    @staticmethod
     def password_required(self, __sb):
         """
         Admin pages should require a password if stok url token is not present.
