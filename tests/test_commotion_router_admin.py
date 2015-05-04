@@ -29,7 +29,7 @@ class TestFirefoxAdmin(cbo.BrowserTestContext):
         Calls login page object.
         """
         login = cpo.CRLoginPage(self.browser)
-        self.assertTrue(login.password_required(self.browser),
+        self.assertTrue(login.password_required(),
                         'Admin pages not password protected')
 
     def test_login_fail(self):
@@ -40,7 +40,7 @@ class TestFirefoxAdmin(cbo.BrowserTestContext):
         password = "garbage\n"
         login = cpo.CRLoginPage(self.browser)
         self.assertTrue(
-            login.incorrect_pass_returns_error(self.browser, password),\
+            login.incorrect_pass_returns_error(password),\
                 'Failed login does not return error'
             )
 
@@ -53,7 +53,7 @@ class TestFirefoxAdmin(cbo.BrowserTestContext):
         """
         login = cpo.CRLoginPage(self.browser)
         self.assertTrue(
-            login.correct_pass_allows_access(self.browser, self.admin_password),\
+            login.correct_pass_allows_access(self.admin_password),\
             'Login form does not allow access on correct password'
             )
 
@@ -74,7 +74,7 @@ class TestFirefoxAdmin(cbo.BrowserTestContext):
             try:
                 self.assertTrue(
                     login.incorrect_pass_returns_error(
-                        self.browser, malicious),\
+                        malicious),\
                         'Password form does not validate strings correctly'
                     )
             except ValueError:

@@ -26,7 +26,7 @@ import objects.exceptions as exceptions
 # { name_of_page_class : {
 # human_readable_element_title : selenium_compatible_element_identifier
 # # inline comment containing identifier type
-#       }
+# }
 # }
 #
 # Use:
@@ -160,8 +160,7 @@ class CRHomePage(RouterTemplate):
             __sb, "CLASS_NAME", LOCATORS["common"]["version"]
         )
         print("Comparing versions")
-        page_rev = __sb.find_element_by_class_name(LOCATORS["common"]
-        ["version"])
+        page_rev = __sb.find_element_by_class_name(LOCATORS["common"]["version"])
         # Could also use page_rev.text.endswith(test_rev)
         if test_rev not in page_rev.text:
             print("Footer version %s does not match test version %s", (
