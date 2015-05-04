@@ -150,6 +150,7 @@ class CRHomePage(RouterTemplate):
         )
         self._verify_correct_page(__sb, self.page_url)
 
+    @staticmethod
     def show_current_rev(self, __sb, test_rev):
         """Check page footer for commotion version number.
         This is actually a common object but common class
@@ -212,6 +213,7 @@ class CRLoginPage(RouterTemplate):
             print("Login page requires a password")
             return True
 
+    @staticmethod
     def incorrect_pass_returns_error(self, __sb, password):
         """The login form should reject incorrect passwords"""
         print("Testing user-supplied password")
@@ -235,6 +237,7 @@ class CRLoginPage(RouterTemplate):
                   "on incorrect password")
             return False
 
+    @staticmethod
     def correct_pass_allows_access(self, __sb, password):
         """
         Correct password in login form should allow access to admin pages
