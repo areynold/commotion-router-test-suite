@@ -9,9 +9,9 @@ import os
 @pytest.fixture(scope="session", autouse=True)
 def setup_ini(request):
     print("in set_up_ini")
+    path = os.path.dirname(os.path.abspath("conftest.py"))
     try:
         # need to back up a directory
-        path = os.path.dirname(os.path.abspath("conftest.py"))
         if not os.path.isfile(path + "/pytest.ini"):
             raise FileNotFoundError("Pytest.ini not found.")
     except FileNotFoundError as args:
