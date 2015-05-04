@@ -5,7 +5,7 @@
 import objects.router.router as cro
 import objects.exceptions as exceptions
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support import expected_conditions as expected
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 
@@ -96,7 +96,7 @@ class CRCommonPage(object):
         print("Waiting for presence of known-good page element")
         try:
             WebDriverWait(__sb, 10).until(
-                EC.presence_of_element_located((By.ID, "device")))
+                expected.presence_of_element_located((By.ID, "device")))
         except NoSuchElementException:
             message = "Page element 'device' not found!"
             print(message)
@@ -115,7 +115,7 @@ class CRCommonPage(object):
         print("Waiting for %s, type %s" % (element, etype))
         try:
             WebDriverWait(__sb, 10).until(
-                EC.presence_of_element_located((
+                expected.presence_of_element_located((
                     (
                         getattr(By, etype)), element
                     )))
