@@ -16,8 +16,6 @@ from selenium.common.exceptions import NoSuchElementException
 import objects.router.router as router
 import objects.exceptions as exceptions
 
-
-
 # Dictionary of core identifiers for each page.
 #
 # Summary: Each page has a number of landmark elements (logos, headings, etc.)
