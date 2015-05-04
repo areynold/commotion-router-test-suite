@@ -8,7 +8,7 @@ functions unique to that page. Page-specific landmarks (logos, form fields, etc.
 to the LOCATORS dictionary.
 """
 
-import objects.router.router as cro
+import objects.router.router as router
 import objects.exceptions as exceptions
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as expected
@@ -69,9 +69,9 @@ class CRCommonPage(object):
 
     # This is dumb and duplicative. We only need node_ip.
     # Try this http://pydanny.com/attaching-custom-exceptions-to-functions-and-classes.html
-    _, commotion_client_ip = cro.get_commotion_client_ip()
+    _, commotion_client_ip = router.get_commotion_client_ip()
     try:
-        commotion_node_ip = cro.get_commotion_node_ip(commotion_client_ip)
+        commotion_node_ip = router.get_commotion_node_ip(commotion_client_ip)
     except TypeError:
         raise exceptions.CommotionIPError(
             'No valid Commotion IP address found'
