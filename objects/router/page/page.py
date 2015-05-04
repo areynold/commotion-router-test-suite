@@ -1,5 +1,11 @@
-"""Collected page objects for Commotion Router web UI.
-    Individual page elements are contained in xelements.py files.
+"""
+Collected page objects for Commotion Router web UI.
+The page design pattern allows web pages and UI elements to be modeled with as much detail as needed,
+while protecting test logic from under-the-hood changes.
+
+Each page is represented by a class, and each page class should contain methods representing
+functions unique to that page. Page-specific landmarks (logos, form fields, etc.) should be added
+to the LOCATORS dictionary.
 """
 
 import objects.router.router as cro
