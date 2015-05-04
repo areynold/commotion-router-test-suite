@@ -3,7 +3,7 @@
 """
 
 import objects.browser as browser
-import objects.router.page.page as cpo
+import objects.router.page.page as page
 
 
 class TestFirefoxUnprivileged(browser.BrowserTestContext):
@@ -11,7 +11,7 @@ class TestFirefoxUnprivileged(browser.BrowserTestContext):
 
     def test_show_correct_version(self):
         """Check the footer for the current Commotion revision"""
-        home = cpo.CRHomePage(self.browser)
+        home = page.CRHomePage(self.browser)
         test_rev = "Commotion Router Release 1.1rc2"
         # This should return the footer string instead, then assertEqual
         self.assertTrue(home.show_current_rev(test_rev),
@@ -23,6 +23,6 @@ class TestFirefoxUnprivileged(browser.BrowserTestContext):
         users to add applications.
         Calls homepage object.
         """
-        home = cpo.CRHomePage(self.browser)
+        home = page.CRHomePage(self.browser)
         self.assertFalse(home.users_can_add_apps(),
                          'Default app permissions incorrect')
