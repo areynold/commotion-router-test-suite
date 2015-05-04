@@ -8,12 +8,14 @@ functions unique to that page. Page-specific landmarks (logos, form fields, etc.
 to the LOCATORS dictionary.
 """
 
-import objects.router.router as router
-import objects.exceptions as exceptions
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as expected
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
+
+import objects.router.router as router
+import objects.exceptions as exceptions
+
 
 
 # Dictionary of core identifiers for each page.
@@ -25,7 +27,7 @@ from selenium.common.exceptions import NoSuchElementException
 # Structure:
 # { name_of_page_class : {
 # human_readable_element_title : selenium_compatible_element_identifier
-#           # inline comment containing identifier type
+# # inline comment containing identifier type
 #       }
 # }
 #
