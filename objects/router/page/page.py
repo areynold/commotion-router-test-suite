@@ -109,7 +109,7 @@ class RouterTemplate(object):
             print("%s loaded successfully" % __sb.current_url)
 
     @staticmethod
-    def wait_for_element_of_type(self, __sb, etype, element):
+    def wait_for_element_of_type(__sb, etype, element):
         """
         Tell selenium to wait for a specific locator of specific type
         before proceeding.
@@ -156,7 +156,7 @@ class CRHomePage(RouterTemplate):
         isn't written to accept tests."""
         print("Checking footer for correct Commotion Revision")
         RouterTemplate.wait_for_element_of_type(
-            self, __sb, "CLASS_NAME", LOCATORS["common"]["version"]
+            __sb, "CLASS_NAME", LOCATORS["common"]["version"]
         )
         print("Comparing versions")
         page_rev = __sb.find_element_by_class_name(LOCATORS["common"]
@@ -196,7 +196,7 @@ class CRLoginPage(RouterTemplate):
         self._verify_correct_page(__sb, self.page_url)
 
     @staticmethod
-    def password_required(self, __sb):
+    def password_required(__sb):
         """
         Admin pages should require a password if stok url token is not present.
         """
@@ -224,7 +224,7 @@ class CRLoginPage(RouterTemplate):
             __sb.find_element_by_class_name("cbi-button-apply").click()
 
         RouterTemplate.wait_for_element_of_type(
-            self, __sb, "CLASS_NAME", LOCATORS["login"]["error"]
+            __sb, "CLASS_NAME", LOCATORS["login"]["error"]
         )
         # Rewrite as try/except NoSuchElementException/else
         if __sb.find_element_by_class_name(LOCATORS["login"]["error"]).is_displayed():
@@ -249,7 +249,7 @@ class CRLoginPage(RouterTemplate):
             __sb.find_element_by_class_name("cbi-button-apply").click()
 
         RouterTemplate.wait_for_element_of_type(
-            self, __sb, "LINK_TEXT", LOCATORS["admin"]["logout"]
+            __sb, "LINK_TEXT", LOCATORS["admin"]["logout"]
         )
 
         # Rewrite as try/except NoSuchElementException/else
