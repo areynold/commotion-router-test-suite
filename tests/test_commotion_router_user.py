@@ -2,11 +2,11 @@
    These are an inefficient use of selenium, but are included as examples.
 """
 
-import objects.browser as cbo
+import objects.browser as browser
 import objects.router.page.page as cpo
 
 
-class TestFirefoxUnprivileged(cbo.BrowserTestContext):
+class TestFirefoxUnprivileged(browser.BrowserTestContext):
     """Unittest child class for unprivileged functions"""
 
     def test_show_correct_version(self):
