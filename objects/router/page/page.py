@@ -151,7 +151,7 @@ class CRHomePage(RouterTemplate):
         self._verify_correct_page(__sb, self.page_url)
 
     @staticmethod
-    def show_current_rev(self, __sb, test_rev):
+    def show_current_rev(__sb, test_rev):
         """Check page footer for commotion version number.
         This is actually a common object but common class
         isn't written to accept tests."""
@@ -171,7 +171,7 @@ class CRHomePage(RouterTemplate):
             return True
 
     @staticmethod
-    def users_can_add_apps(self, __sb):
+    def users_can_add_apps(__sb):
         """When enabled, unprivileged users can add apps from the homepage"""
         print("Checking for app add button...")
         try:
@@ -214,7 +214,7 @@ class CRLoginPage(RouterTemplate):
             return True
 
     @staticmethod
-    def incorrect_pass_returns_error(self, __sb, password):
+    def incorrect_pass_returns_error(__sb, password):
         """The login form should reject incorrect passwords"""
         print("Testing user-supplied password")
         __sb.find_element_by_id(
@@ -238,7 +238,7 @@ class CRLoginPage(RouterTemplate):
             return False
 
     @staticmethod
-    def correct_pass_allows_access(self, __sb, password):
+    def correct_pass_allows_access(__sb, password):
         """
         Correct password in login form should allow access to admin pages
         """
