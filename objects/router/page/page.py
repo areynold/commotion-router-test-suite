@@ -10,7 +10,24 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 
 
-# Core identifiers for each page.
+# Dictionary of core identifiers for each page.
+#
+# Summary: Each page has a number of landmark elements (logos, headings, etc.)
+# that help us navigate and interact with the page. The LOCATORS variable is a
+# dictionary of pages and their elements that can be called from tests.
+#
+# Structure:
+# { name_of_page_class : {
+#       human_readable_element_title : selenium_compatible_element_identifier
+#           # inline comment containing identifier type
+#       }
+# }
+#
+# Use:
+# Most often used with wait_for_element_of_type() or selenium's built-in locator functions.
+# e.g., LOCATORS["common"]["commotion_logo"] would return the html ID ("device") of the template's
+# Commotion logo, which can be used to check that the page has finished loading before attempting
+# to run test functions.
 LOCATORS = {
     "common": {
         "commotion_logo": "device", # ID
