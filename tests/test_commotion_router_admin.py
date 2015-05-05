@@ -7,11 +7,11 @@ import configparser
 
 import pytest
 
-import objects.browser as cbo
+import objects.browser as browser
 import objects.router.page.page as page
 
 
-class TestFirefoxAdmin(cbo.BrowserTestContext):
+class TestFirefoxAdmin(browser.BrowserTestContext):
     """Tests of privileged Commotion Router web functions"""
 
     # Override default profile (None)
