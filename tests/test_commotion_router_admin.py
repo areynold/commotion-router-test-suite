@@ -41,9 +41,9 @@ class TestFirefoxAdmin(browser.BrowserTestContext):
         password = "garbage\n"
         login = page.CRLoginPage(self.browser)
         self.assertTrue(
-            login.incorrect_pass_returns_error(self.browser, password),\
-                'Failed login does not return error'
-            )
+            login.incorrect_pass_returns_error(self.browser, password),
+            'Failed login does not return error'
+        )
 
     @pytest.mark.xfail(admin_password == "ChangeMe",
                        reason="Will fail until correct pass set in pytest.ini")
@@ -54,9 +54,9 @@ class TestFirefoxAdmin(browser.BrowserTestContext):
         """
         login = page.CRLoginPage(self.browser)
         self.assertTrue(
-            login.correct_pass_allows_access(self.browser, self.admin_password),\
+            login.correct_pass_allows_access(self.browser, self.admin_password),
             'Login form does not allow access on correct password'
-            )
+        )
 
     def test_login_input_validation(self):
         """
@@ -64,6 +64,7 @@ class TestFirefoxAdmin(browser.BrowserTestContext):
         password list is populated from user-defined external strings file.
         """
         from objects.malicious_strings import MALICIOUS_STRINGS
+
         buggy_strings = []
         for _, malicious in enumerate(MALICIOUS_STRINGS):
             # Need to reset page after each attempt
@@ -74,10 +75,9 @@ class TestFirefoxAdmin(browser.BrowserTestContext):
             # 1. exception will probably end the test early
             try:
                 self.assertTrue(
-                    login.incorrect_pass_returns_error(self.browser,
-                        malicious),\
-                        'Password form does not validate strings correctly'
-                    )
+                    login.incorrect_pass_returns_error(self.browser, malicious),
+                    'Password form does not validate strings correctly'
+                )
             except ValueError:
                 buggy_strings.append(malicious)
                 print("%s causes login form problems" % malicious)
