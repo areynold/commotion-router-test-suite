@@ -1,6 +1,5 @@
 """Custom exceptions for the Commotion Router Test Suite"""
 
-import requests
 
 class CommotionIPError(ConnectionError):
     """
