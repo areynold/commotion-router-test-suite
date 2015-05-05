@@ -3,7 +3,6 @@
     but are included as examples.
 """
 
-import unittest
 import objects.browser as cbo
 import objects.router.page.page as cpo
 import configparser
