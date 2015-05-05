@@ -6,7 +6,9 @@ class CommotionIPError(ConnectionError):
     Raised when the test host does not have a valid Commotion IP address.
     Subclass of the built-in ConnectionError base class.
     """
-    def __init__(self, value):
+
+    def __init__(self, value, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         self.msg = "Connect to a Commotion AP before running tests: "
         self.value = value
 
