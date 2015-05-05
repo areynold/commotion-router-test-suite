@@ -8,7 +8,7 @@ import configparser
 import pytest
 
 import objects.browser as cbo
-import objects.router.page.page as cpo
+import objects.router.page.page as page
 
 
 class TestFirefoxAdmin(cbo.BrowserTestContext):
@@ -29,7 +29,7 @@ class TestFirefoxAdmin(cbo.BrowserTestContext):
         Use admin profile to bypass DOM-less self-signed cert error.
         Calls login page object.
         """
-        login = cpo.CRLoginPage(self.browser)
+        login = page.CRLoginPage(self.browser)
         self.assertTrue(login.password_required(),
                         'Admin pages not password protected')
 
@@ -39,7 +39,7 @@ class TestFirefoxAdmin(cbo.BrowserTestContext):
         Calls login page object
         """
         password = "garbage\n"
-        login = cpo.CRLoginPage(self.browser)
+        login = page.CRLoginPage(self.browser)
         self.assertTrue(
             login.incorrect_pass_returns_error(password),\
                 'Failed login does not return error'
@@ -52,7 +52,7 @@ class TestFirefoxAdmin(cbo.BrowserTestContext):
         Correct password should allow access to admin functions.
         Password should be defined at runtime
         """
-        login = cpo.CRLoginPage(self.browser)
+        login = page.CRLoginPage(self.browser)
         self.assertTrue(
             login.correct_pass_allows_access(self.admin_password),\
             'Login form does not allow access on correct password'
@@ -68,7 +68,7 @@ class TestFirefoxAdmin(cbo.BrowserTestContext):
         for _, malicious in enumerate(MALICIOUS_STRINGS):
             # Need to reset page after each attempt
             # Otherwise pw fail error stays on screen
-            login = cpo.CRLoginPage(self.browser)
+            login = page.CRLoginPage(self.browser)
             print(malicious)
             # This test needs revision.
             # 1. exception will probably end the test early
