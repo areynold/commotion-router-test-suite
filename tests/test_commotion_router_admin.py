@@ -3,10 +3,12 @@
     but are included as examples.
 """
 
+import configparser
+
+import pytest
+
 import objects.browser as cbo
 import objects.router.page.page as cpo
-import configparser
-import pytest
 
 
 class TestFirefoxAdmin(cbo.BrowserTestContext):
