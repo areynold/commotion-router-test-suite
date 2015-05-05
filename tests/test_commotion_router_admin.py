@@ -30,7 +30,7 @@ class TestFirefoxAdmin(browser.BrowserTestContext):
         Calls login page object.
         """
         login = page.CRLoginPage(self.browser)
-        self.assertTrue(login.password_required(),
+        self.assertTrue(login.password_required(self.browser),
                         'Admin pages not password protected')
 
     def test_login_fail(self):
@@ -41,7 +41,7 @@ class TestFirefoxAdmin(browser.BrowserTestContext):
         password = "garbage\n"
         login = page.CRLoginPage(self.browser)
         self.assertTrue(
-            login.incorrect_pass_returns_error(password),\
+            login.incorrect_pass_returns_error(self.browser, password),\
                 'Failed login does not return error'
             )
 
@@ -54,7 +54,7 @@ class TestFirefoxAdmin(browser.BrowserTestContext):
         """
         login = page.CRLoginPage(self.browser)
         self.assertTrue(
-            login.correct_pass_allows_access(self.admin_password),\
+            login.correct_pass_allows_access(self.browser, self.admin_password),\
             'Login form does not allow access on correct password'
             )
 
@@ -74,7 +74,7 @@ class TestFirefoxAdmin(browser.BrowserTestContext):
             # 1. exception will probably end the test early
             try:
                 self.assertTrue(
-                    login.incorrect_pass_returns_error(
+                    login.incorrect_pass_returns_error(self.browser,
                         malicious),\
                         'Password form does not validate strings correctly'
                     )
