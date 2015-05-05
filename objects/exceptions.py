@@ -10,6 +10,7 @@ class CommotionIPError(ConnectionError):
     def __init__(self, value):
         self.msg = "Connect to a Commotion AP before running tests: "
         self.value = value
+
     def __str__(self):
         string = self.msg + repr(self.value)
         return string
